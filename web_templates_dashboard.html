@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trading Bot Dashboard</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Trading Bot Dashboard</h1>
+    <h2>Positions</h2>
+    <table id="positions"></table>
+    <h2>Recent Trades</h2>
+    <table id="trades"></table>
+
+    <script>
+        async function updateDashboard() {
+            const res = await fetch('/api/status');
+            const data = await res.json();
+            
+            const posTable = document.getElementById('positions');
+            posTable.innerHTML = '<tr><th>Symbol</th><th>Qty</th><th>Avg Price</th><th>Current</th><th>Unrealized P/L</th></tr>';
+            data.positions.forEach(p => {
+                posTable.innerHTML += `<tr>
+                    <td>${p.symbol}</td>
+                    <td>${p.qty}</td>
+                    <td>${p.avg_price}</td>
+                    <td>${p.current_price}</td>
+                    <td>${p.unrealized_pl}</td>
+                </tr>`;
+            });
+
+            const tradesTable = document.getElementById('trades');
+            tradesTable.innerHTML = '<tr><th>Symbol</th><th>Side</th><th>Qty</th><th>Price</th><th>Time</th></tr>';
+            data.trades.forEach(t => {
+                tradesTable.innerHTML += `<tr>
+                    <td>${t.symbol}</td>
+                    <td>${t.side}</td>
+                    <td>${t.qty}</td>
+                    <td>${t.price}</td>
+                    <td>${t.timestamp}</td>
+                </tr>`;
+            });
+        }
+
+        setInterval(updateDashboard, 5000);
+        updateDashboard();
+    </script>
+</body>
+</html>

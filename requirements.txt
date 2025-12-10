@@ -1,0 +1,9 @@
+alpaca-trade-api
+yfinance
+flask
+pandas
+numpy
+scikit-learn
+python-dotenv
+schedule
+websocket-client
