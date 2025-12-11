@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 
 from bot.strategies import MLStrategy
 from bot.risk_engine import RiskEngine
+from bot.rl_agent import RLAgent
 from bot.deep_rl_agent import DeepRLAgent
 
 load_dotenv()
