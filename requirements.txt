@@ -7,4 +7,3 @@ scikit-learn
 python-dotenv
 schedule
 websocket-client
-torch

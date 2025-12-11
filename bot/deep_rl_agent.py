@@ -136,3 +136,8 @@ class DeepRLAgent:
         """Reward is PnL from trade."""
         reward = float(reward)
         self.train_step()
+
+try:
+    import torch
+except ImportError:
+    torch = None
